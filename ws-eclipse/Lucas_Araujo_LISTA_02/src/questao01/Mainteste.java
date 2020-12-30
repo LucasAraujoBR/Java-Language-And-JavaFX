@@ -14,8 +14,7 @@ public class Mainteste {
 		
 		System.out.println("Quantidades de valores comuns entre os dois bilhetes: " + bl2.qtdNumerosContidos(bl));
 
-		System.out.println("PARABÉNS VOCÊ GANHOU NA MEGASENA DEPOIS DE "+ ml.retornaResultados() +" TENTATIVAS DE JOGO");
-		
+		System.out.println("Jogos de números 6: você apostou " + ml.retornaResultados() +" vezes para ganhar na mega-sena. Dentre esses jogos, você acertou "+ml.retornaQuadra()+" quadras e "+ml.retornaQuina()+" quinas.");
 		
 		
 		
