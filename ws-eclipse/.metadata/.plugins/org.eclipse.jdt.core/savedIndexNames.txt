@@ -6,7 +6,6 @@ INDEX VERSION 1.131+C:\Users\lucar\Desktop\Java Language\ws-eclipse\.metadata\.p
 277842515.index
 3460880079.index
 3538171105.index
-722339496.index
 2619587028.index
 859694225.index
 4047397020.index

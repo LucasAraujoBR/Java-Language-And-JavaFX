@@ -8,27 +8,38 @@ import java.util.Random;
 public class MinhaLoteria {
 	private List<Integer> bilhetePremiado;
 	Random oo = new Random();
-	private int cont;
-	private int quadra;
-	private int quina;
+	private int cont=0;
+	private int quadra=0;
+	private int quina=0;
+	private int tamanho=0;
+	private int megaSena=0;
+	private	int tamanho2 = 0;
 
 	public MinhaLoteria(List<Integer> bilhetePremiado) {
+		
+		this.bilhetePremiado = bilhetePremiado;
+		
+
+	}
+
+	public void executaLoteria(List<Integer> bilhetePremiado,int tamanho) {
 		this.quadra = 0;
 		this.quina = 0;
-		int megaSena = 0;
+		this.megaSena = 0;
 		this.cont = 0;
-
+		this.tamanho = tamanho;
 		this.bilhetePremiado = bilhetePremiado;
-		ArrayList<Integer> bilhetes = new ArrayList<Integer>();
+		
+		ArrayList<Integer> bilhetes = new ArrayList<Integer>(tamanho);
 		int numIguais = 0;
 		while (megaSena == 0) {
 
 			this.cont++;
-			if (bilhetes.size() == 6) {
+			if (bilhetes.size() == tamanho) {
 				numIguais = 0;
 				bilhetes.removeAll(bilhetes);
 			}
-			while (bilhetes.size() < 6) {
+			while (bilhetes.size() < tamanho) {
 				int numeroAleatorio = oo.nextInt(60) + 1;
 				if (!bilhetes.contains(numeroAleatorio)) {
 					bilhetes.add(numeroAleatorio);
@@ -41,8 +52,8 @@ public class MinhaLoteria {
 				}
 
 			}
-			for (int aut = 0; aut < 6; aut++) {
-				for (int out = 0; out < 6; out++) {
+			for (int aut = 0; aut < bilhetes.size(); aut++) {
+				for (int out = 0; out < bilhetes.size(); out++) {
 					if (bilhetes.get(aut).equals(bilhetePremiado.get(out))) {
 						numIguais++;
 					}
@@ -55,11 +66,15 @@ public class MinhaLoteria {
 			if(numIguais == 5) {
 				this.quina++;
 			}
+			if(numIguais == 6) {
+				megaSena = 1;
+			}
 
 		}
-
+		
 	}
-
+	
+	
 	public int retornaResultados() {
 
 		return this.cont;
