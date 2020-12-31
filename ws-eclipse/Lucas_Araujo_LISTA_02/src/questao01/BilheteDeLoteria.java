@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BilheteDeLoteria {
 	private int tamanho;
-	List<Integer> numeros = new ArrayList<>(tamanho);
+	List<Integer> numeros = new ArrayList<>();
 	Random oo = new Random();
 
 	public BilheteDeLoteria(int tamanho) {
@@ -33,7 +33,7 @@ public class BilheteDeLoteria {
 				}
 			}
 		}
-		
+
 		return cont;
 	}
 
