@@ -1,5 +1,3 @@
-package questao01;
-
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -7,17 +5,17 @@ import java.util.Random;
 import java.util.Collections;
 import java.util.List;
 
-public class BilheteDeLoteria {
+public class BilDLoteria {
 	private int tamanho;
 	private int[] numeros = new int[tamanho];
 	Random oo = new Random();
 
-	public BilheteDeLoteria(int tamanho) {
+	public BilDLoteria(int tamanho) {
 		this.tamanho = tamanho;
-		
 
 	}
-	public int[] executaBilheteDeLoteria(int tamanho) {
+
+	public void executaLoteria(int tamanho) {
 		int[] numeros = new int[tamanho];
 		boolean resultado = false;
 		for (int aux = 0; aux < tamanho; aux++) {
@@ -32,8 +30,8 @@ public class BilheteDeLoteria {
 		}
 		Arrays.sort(numeros);
 		this.numeros = numeros; 
-		return numeros;
 	}
+
 	public boolean contem(int[] numeros, int numAleatorio) {
 		for (int i = 0; i < numeros.length; i++) {
 			if (numAleatorio == numeros[i]) {
@@ -43,26 +41,9 @@ public class BilheteDeLoteria {
 		return false;
 	}
 
-	public int qtdNumerosContidos(BilheteDeLoteria bl2) {
-		int cont = 0;
-		for (int i = 0; i <numeros.length; i++) {
-			for (int k = 0; k <numeros.length; k++) {
-				if (bl2.numeros[i] == numeros[k]) {
-					cont++;
-				}
-			}
-		}
-
-		return cont;
-	}
 	@Override
 	public String toString() {
-		return Arrays.toString(numeros);
+		return "BilDLoteria tamanho " + tamanho + ", numeros = " + Arrays.toString(numeros);
 	}
-
-	
-	
-
-	
 
 }
