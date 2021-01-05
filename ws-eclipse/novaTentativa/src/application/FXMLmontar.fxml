@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: darkblue;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="application.Controller">
+   <children>
+      <Button layoutX="124.0" layoutY="214.0" mnemonicParsing="false" onAction="#butaoAcao" text="Contar" />
+      <Label fx:id="l1" layoutX="69.0" layoutY="250.0" prefHeight="17.0" prefWidth="162.0" textFill="#f50000" />
+      <TextArea fx:id="tArea" layoutX="63.0" layoutY="63.0" prefHeight="129.0" prefWidth="177.0" />
+      <TextField alignment="CENTER" layoutX="31.0" layoutY="14.0" prefHeight="25.0" prefWidth="240.0" promptText="Contador de caracteres" style="-fx-background-color: LightGray;" text="Contador de caracteres">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+   </children>
+</AnchorPane>
