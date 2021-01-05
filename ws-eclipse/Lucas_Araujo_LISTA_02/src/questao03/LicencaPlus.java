@@ -5,24 +5,18 @@ import java.time.LocalDateTime;
 public class LicencaPlus extends Receita{
 	protected int totalContas;
 	
-	public LicencaPlus(int totalContas) {
-		super();
+	public LicencaPlus(String data,int totalContas) {
+		super(data);
 		this.totalContas = totalContas;
 	}
 
-	@Override
-	public LocalDateTime getData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
 	public String getDescricao() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return "Licença Plus";
 	}
 
-	@Override
+	
 	public double calcularTotal() {
 		totalContas *=35.00;
 		return (double) totalContas;
