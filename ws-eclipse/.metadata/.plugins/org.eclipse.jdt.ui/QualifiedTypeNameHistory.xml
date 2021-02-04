@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="entities.Rectangle"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="QuintoQuesito.ItemVenda"/>
     <fullyQualifiedTypeName name="java.util.Calendar"/>
@@ -11,7 +10,6 @@
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.util.Collections"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
@@ -23,16 +21,33 @@
     <fullyQualifiedTypeName name="java.awt.TextArea"/>
     <fullyQualifiedTypeName name="java.awt.Label"/>
     <fullyQualifiedTypeName name="java.awt.TextField"/>
-    <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
     <fullyQualifiedTypeName name="application.Controller"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
-    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXML"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
-    <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
     <fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.AnchorPane"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="java.util.Locale"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
+    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+    <fullyQualifiedTypeName name="com.sun.glass.events.MouseEvent"/>
+    <fullyQualifiedTypeName name="javafx.scene.input.MouseEvent"/>
+    <fullyQualifiedTypeName name="javafx.scene.input.ScrollEvent"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.SelectionMode"/>
+    <fullyQualifiedTypeName name="javafx.fxml.Initializable"/>
+    <fullyQualifiedTypeName name="javafx.scene.Parent"/>
+    <fullyQualifiedTypeName name="application.Main"/>
+    <fullyQualifiedTypeName name="Mesas.ControleMesa"/>
+    <fullyQualifiedTypeName name="Mesas.ReservaMesa"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
+    <fullyQualifiedTypeName name="partePedidos.Pedidos"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="TelaPedido.ControllerPedido"/>
+    <fullyQualifiedTypeName name="partePedidos.PedidosCRUD"/>
+    <fullyQualifiedTypeName name="Mesas.Mesa"/>
+    <fullyQualifiedTypeName name="TelaMesas.controllerMesas"/>
 </qualifiedTypeNameHistroy>
