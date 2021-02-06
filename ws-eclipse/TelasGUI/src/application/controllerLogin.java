@@ -2,8 +2,6 @@ package application;
 
 import java.io.IOException;
 
-
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -25,6 +23,15 @@ public class controllerLogin {
 	private TextField senhaTXT;
 
 	@FXML
+	private Button BTMCadastrar;
+
+	@FXML
+	void acaBTMCadastrar(ActionEvent event) {
+		Main.changeScreen("Cadastro");
+
+	}
+
+	@FXML
 	void acaoBotao(ActionEvent event) throws IOException {
 		String codigoFuncionario = CodTXT.getText();
 		String senhaGerente = senhaTXT.getText();
@@ -44,7 +51,7 @@ public class controllerLogin {
 			Main.changeScreen("Mesas");
 			CodTXT.clear();
 			senhaTXT.clear();
-			
+
 		}
 		int senhaG = Integer.parseInt(senhaGerente);
 		if (codigoFuncionario.length() != 0 && senhaG == 1234) {
@@ -57,7 +64,7 @@ public class controllerLogin {
 			CodTXT.clear();
 			senhaTXT.clear();
 		}
-		
+
 		if (senhaG != 1234) {
 			Alert alerta = new Alert(Alert.AlertType.ERROR);
 			alerta.setTitle("Alerta");
