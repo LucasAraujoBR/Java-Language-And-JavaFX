@@ -91,7 +91,7 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return String.format("CPF: " + this.cpf + "  |Código de usuário: " + this.codFuncionario);
+		return String.format("Cargo: " + this.cargo +" |CPF: " + this.cpf + "  |Código de usuário: " + this.codFuncionario);
 	}
 
 }

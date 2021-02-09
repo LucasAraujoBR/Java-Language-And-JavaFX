@@ -60,10 +60,12 @@ public class ControllerTelaCadastro implements Initializable {
 
 	@FXML
 	private Button voltaBTM;
-
+	FunCAD cad = new FunCAD();
+	
+	
 	@FXML
 	void acaoAdicionarBTM(ActionEvent event) {
-
+		
 		String nomeF = nomeTXT.getText();
 		String cpfF = cpfTXT.getText();
 		String emailF = emailTXT.getText();
@@ -78,8 +80,8 @@ public class ControllerTelaCadastro implements Initializable {
 			alerta.setContentText("Favor,informar todos os campos!");
 			alerta.show();
 		}else {
+			
 		Funcionario f = new Funcionario(nomeF, cpfF, telefoneF, emailF, codF, cargoF);
-		FunCAD cad = new FunCAD();
 		cad.cadrastarFuncionario(f);
 		cad.cadrastarCodFuncionario(codF);
 		System.out.println("CodFuncionario:" +cad.listarCodFuncionario());
@@ -95,7 +97,7 @@ public class ControllerTelaCadastro implements Initializable {
 			Alert alerta = new Alert(Alert.AlertType.ERROR);
 			alerta.setTitle("Erro");
 			alerta.setHeaderText(null);
-			alerta.setContentText("Funcionário já cadastrado,favor chegar os dados");
+			alerta.setContentText("Funcionário já cadastrado,favor checar os dados");
 			alerta.show();
 			nomeTXT.clear();
 			cpfTXT.clear();
@@ -110,19 +112,21 @@ public class ControllerTelaCadastro implements Initializable {
 
 	@FXML
 	void listarFuncionarios(ActionEvent event) {
-		FunCAD cad = new FunCAD();
-		Funcionario f = new Funcionario("ADMIN", "874.521.856-23", "00", "00", "gerente159", "Gerente");
-		cad.cadrastarFuncionario(f);
+		listViewCadastro.getItems().removeAll(cad.listarFuncionario());
 		listViewCadastro.getItems().addAll(cad.listarFuncionario());
 		listViewCadastro.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
 
 	}
 
 	@FXML
 	void acaoRemoverBTM(ActionEvent event) {
-		FunCAD cad = new FunCAD();
-	//	listViewCadastro.getItems().remove(0)
-	//	cad.removerFuncionario();
+		//Sistema não implementado!
+		Alert alerta = new Alert(Alert.AlertType.WARNING);
+		alerta.setTitle("Alerta");
+		alerta.setHeaderText(null);
+		alerta.setContentText("Sistema não implementado!");
+		alerta.show();
 	}
 
 	@FXML

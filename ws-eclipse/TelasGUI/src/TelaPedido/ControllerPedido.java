@@ -37,7 +37,7 @@ public class ControllerPedido implements Initializable {
     }
 	@FXML
 	void addPedidoBTM(ActionEvent event) {
-		//pesquisar!!!
+		
 		
 		
 

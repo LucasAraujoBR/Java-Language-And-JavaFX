@@ -25,7 +25,7 @@ public class controllerLogin implements Initializable {
 	private Button BTM01;
 	@FXML
 	private TextField CodTXT;
-
+	FunCAD cad = new FunCAD();
 	@FXML
 	private TextField senhaTXT;
 
@@ -61,41 +61,35 @@ public class controllerLogin implements Initializable {
 			alerta.setHeaderText(null);
 			alerta.setContentText("Favor,informar o campo <Código de usuário>");
 			alerta.show();
-		}	
-		/*ArrayList<String> valorArrayCOD = new ArrayList<String>();
-		ControllerTelaCadastro cd = new ControllerTelaCadastro();
-		String valorCOD = cd.getCod();
-		valorArrayCOD.add(valorCOD);
-		
-		for(String p: valorArrayCOD) {
-			p.equals(codigoFuncionario);
-			System.out.println("VALOR CADASTRADO");
-		}*/
-		
-		
+		}
+
 		if (codigoFuncionario.length() != 0 && senhaGerente.length() == 0) {
-			FunCAD fc = new FunCAD();
-			boolean tem = true;
-			fc.cadrastarCodFuncionario(codigoFuncionario);
-			System.out.println(fc.listarCodFuncionario());
-			
-			if(tem == true) {
-			Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-			alerta.setTitle("Login realizado com sucesso!");
-			alerta.setHeaderText(null);
-			alerta.setContentText("Clique em OK para continuar");
-			alerta.show();
-			Main.changeScreen("Mesas");
-			CodTXT.clear();
-			senhaTXT.clear();
-			}else {
+			// para validar acesso preciso pegar a lista de CodFuncionarios,não consegui ainda!
+		/*	ArrayList<String> codigo = cad.listarCodFuncionario();
+			System.out.println(codigo);
+			boolean tem = false;
+			for (String c : codigo) {
+				if (c.equals(codigoFuncionario)) {
+					tem = true;
+				}
+			}
+			if (tem == true) {*/
+				Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+				alerta.setTitle("Login realizado com sucesso!");
+				alerta.setHeaderText(null);
+				alerta.setContentText("Clique em OK para continuar");
+				alerta.show();
+				Main.changeScreen("Mesas");
+				CodTXT.clear();
+				senhaTXT.clear();
+		/*	} else {
 				Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 				alerta.setTitle("Código de funcionário inválido!");
 				alerta.setHeaderText(null);
 				alerta.setContentText("insira novamente o código");
 				alerta.show();
 				CodTXT.clear();
-				}
+			}*/
 
 		} else {
 			Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -130,12 +124,8 @@ public class controllerLogin implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		FunCAD fu = new FunCAD();
-		Funcionario f = new Funcionario("nome", "a", "a", "a", "1212", "Gerente");
-		fu.cadrastarFuncionario(f);
-		fu.cadrastarCodFuncionario("1313");
-		System.out.println(fu.listarFuncionario());
-		System.out.println(fu.listarCodFuncionario());
+		ArrayList<String> codigo = cad.listarCodFuncionario();
+		System.out.println(codigo);
 
 	}
 }
