@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="JavaFX/Lucas_Araujo_LISTA_02_JAVAFX/src"/>
+	<classpathentry kind="src" path="JavaFX/Lucas_Araujo_lista_02_JAVAFX15/src"/>
+	<classpathentry kind="src" path="JavaFX/Lucas_Araujo_LISTA_02/src"/>
+	<classpathentry kind="src" path="JavaFX/novaTentativa/src"/>
+	<classpathentry excluding="TelaPedido/" kind="src" path="TelasGUI/src"/>
+	<classpathentry kind="src" path="TelasGUI/src/TelaPedido"/>
+	<classpathentry kind="src" path="ws-eclipse/Activity/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Activity2/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Activity3/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Activity4/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Activity5/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Activity6/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Beginner/src"/>
+	<classpathentry kind="src" path="ws-eclipse/ClassesProjetoProg2/src"/>
+	<classpathentry kind="src" path="ws-eclipse/CodeTest/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Conditional/src"/>
+	<classpathentry kind="src" path="ws-eclipse/fistproject.java/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Lucas_Araujo_LISTA_02/src"/>
+	<classpathentry kind="src" path="ws-eclipse/Lucas_Araujo_Lista_1/src"/>
+	<classpathentry kind="src" path="ws-eclipse/RestaurantControl/src"/>
+	<classpathentry kind="src" path="ws-eclipse/StructureFOR/src"/>
+	<classpathentry kind="src" path="ws-eclipse/StructureWhile/src"/>
+	<classpathentry excluding="TelaPedido/" kind="src" path="ws-eclipse/TelasGUI/src"/>
+	<classpathentry kind="src" path="ws-eclipse/TelasGUI/src/TelaPedido"/>
+	<classpathentry kind="src" path="ws-eclipse/teste_inicial/src"/>
+	<classpathentry kind="output" path="JavaFX/Lucas_Araujo_LISTA_02/bin"/>
+</classpath>
