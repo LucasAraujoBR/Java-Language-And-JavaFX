@@ -1,66 +1,106 @@
 package parteCaixa;
-import Mesas.Mesa;
-import java.util.ArrayList;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import Mesas.Mesa;
+import TelaMesas.controllerMesas;
+import partePedidos.pedCAD;
+
 public class Caixa {
 	private String descricao;
-	private static double cofre; 
-	private Caixista funcionarioCaixa;
+	private static double cofre;
 	private Mesa clienteDaMesa;
-	
+	private double contaMesa;
+	private static ArrayList<Mesa> contasDoDia;
+
 	public Caixa() {
-		this.descricao = "";
-		this.funcionarioCaixa = null;
+		this.descricao = "Caixa";
 		this.clienteDaMesa = null;
+		contaMesa = 0;
 		cofre = 0;
+		contasDoDia = new ArrayList<>();
+
 	}
-	
+
 	public void receberDinheiro() {
 		boolean recebeu = confirmarPagamento(gerarConta());
-		if(recebeu) 
-			gerarNotaFiscal(clienteDaMesa.getPedidos());
-		else
-			System.out.println("***O valor a se receber é considerado uma subtração***");
-	}
-	// Precisa ainda receber da classe Pedido a DESCRIÇÃO do item pelo getDescrição()
-	// também seu preço por unidade e a quantidade por seus respectivos Gets
-	public void gerarCupomFiscal(ArrayList<Pedido> pedidos) {
-		LocalDateTime data = LocalDateTime.now();
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-		int item = 1;
-		System.out.printf("%s   %s\n", data.toLocalDate().format(formato), data.toLocalTime().toString());
-		System.out.println("________________________________________________");
-		System.out.println("          C U P O M     F I S C A L");
-		System.out.println("ITEM CODIGO   DESCRICAO");
-		System.out.println("QTD.   UN    VL.UNIT(R$)             VL.ITEM(R$)");
-		System.out.println("________________________________________________");
-		for(Pedido atualPedido: pedidos) {
-			System.out.printf ("%3d   %s   %s  \n", item, atualPedido.getCodigo(), atualPedido.getDescricao());
-			System.out.printf ("      %3.f UN x %2.f                 %2.f\n", atualPedido.getQuantidade(), atualPedido.getPrecoUnidade(), atualPedido.getPrecoUnidade() * atualPedido.getQuantidade());
+		if (recebeu) {
+			contasDoDia.add(clienteDaMesa);
+			clienteDaMesa = null;
 		}
-		System.out.println("                                     -----------");
-		System.out.printf ("Subtotal R$                                %2.f\n"), clienteDaMesa.getConta());
-		System.out.println("________________________________________________");
-		System.out.printf("T O T A L  R $                              %2.f\n", clienteDaMesa.getConta());
-		
 	}
+
+	public String cupomFiscal(ArrayList<pedCAD> pedidos) {
+
+		LocalDateTime data = LocalDateTime.now();
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/YYYY   HH:mm:ss");
+		String nota = String.format("%s\n", data.format(formato));
+		String nota2 = String.format(("________________________________________________\n"));
+		String nota3 = String.format(("          C U P O M     F I S C A L\n"));
+		String nota4 = String.format(("ITEM          DESCRICAO\n"));
+		String nota5 = String.format(("QTD.   UN    VL.UNIT(R$)             VL.ITEM(R$)\n"));
+		String nota7 = String.format("________________________________________________\n");
+		String nota9 = String.format(("                                                    -----------\n"));
+		String nota10 = String.format("Subtotal R$                                      %.2f\n",
+				controllerMesas.getMesaSelecionada().preco(pedidos));
+		String nota11 = String.format("________________________________________________\n");
+		String nota12 = String.format("T O T A L  R $                                   %.2f\n",
+				controllerMesas.getMesaSelecionada().preco(pedidos));
+
+		String nota8 = notaFiscal(pedidos, 0);
+		String cumpom = nota + nota2 + nota3 + nota4 + nota5 + nota7 + nota8;
+		// String cumpom = nota + nota2 + nota3 + nota4 +
+		// nota5+nota7+nota8+nota9+nota10+nota11+nota12;
+		for (int i = 1; i < pedidos.size(); i++) {
+			cumpom = cumpom + notaFiscal(pedidos, i);
+		}
+
+		return cumpom + nota9 + nota10 + nota11 + nota12;
+
+	}
+
+	public String notaFiscal(ArrayList<pedCAD> pedidos, int numero) {
+		String nota10 = "";
+		if (numero + 1 >= 100)
+			System.out.printf("%d         %s  \n", numero + 1, pedidos.get(numero).getNome());
+		else if (numero + 1 >= 10)
+			System.out.printf("0%d         %s  \n", numero + 1, pedidos.get(numero).getNome());
+		else if (numero + 1 >= 1)
+			nota10 = String.format("00%d         %s  \n", numero + 1, pedidos.get(numero).getNome());
+
+		double conta = pedidos.get(numero).getValor() * pedidos.get(numero).getQuantidade();
+		String nota100 = String.format("      %d.000 UN x %.2f      ", pedidos.get(numero).getQuantidade(),
+				pedidos.get(numero).getValor());
+		int tamanho = 51 - nota100.length();
+		if (conta >= 1000)
+			tamanho -= 7;
+		else if (conta >= 100)
+			tamanho -= 6;
+		else if (conta >= 10)
+			tamanho -= 5;
+		else
+			tamanho -= 4;
+		for (int comeco = 0; comeco < tamanho; comeco++)
+			nota100 += " ";
+		nota100 += String.format("%.2f\n", conta);
+		return nota10 + nota100;
+	}
+
 	public void gerarLucro() {
-		
+
 	}
+
 	public void fecharCaixa() {
-	
+		contasDoDia.clear();
+
 	}
-	public void abrirCaixa() {
-		
+
+	public static ArrayList<Mesa> gerarContasDiarias() {
+		return contasDoDia;
 	}
-	public ArrayList<Pedido> gerarContasDiarias(ArrayList<Pedido> todosPedidos) {
-		
-	}
-	public void gerarRelatorioGorjetas(Garcom garcom) {
-		
-	}
+
 	private boolean confirmarPagamento(double dinheiro) {
 
 		boolean confirma = false;
@@ -70,22 +110,22 @@ public class Caixa {
 		}
 		return confirma;
 	}
+
 	public double gerarConta() {
-		return clienteDaMesa.Conta();
+		return contaMesa;
 	}
-	
-	
-	
+
 	public void setClienteDaMesa(Mesa mesa) {
-		if(!mesa.equals(null))
+		if (!mesa.equals(null))
 			this.clienteDaMesa = mesa;
 	}
-	public void setFuncionarioCaixa(Caixista funcionario) {
-		if(!funcionario.equals(null)) 
-			this.funcionarioCaixa = funcionario;
-	}
+
 	private void setCofre(double dinheiro) {
-		if(dinheiro > 0)
+		if (dinheiro > 0)
 			cofre += dinheiro;
+	}
+
+	public void setContaMesa(double conta) {
+		this.contaMesa = conta;
 	}
 }

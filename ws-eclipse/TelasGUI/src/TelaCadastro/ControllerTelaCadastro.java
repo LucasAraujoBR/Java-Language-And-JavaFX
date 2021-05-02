@@ -1,9 +1,11 @@
 package TelaCadastro;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Main;
+import application.controllerLogin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,9 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import parteFuncionario.FunCAD;
 import parteFuncionario.Funcionario;
 
@@ -31,41 +35,52 @@ public class ControllerTelaCadastro implements Initializable {
 	@FXML
 	private TextField telefoneTXT;
 
+	// @FXML
+	// private ListView<Funcionario> listViewCadastro;
 	@FXML
-	private ListView<Funcionario> listViewCadastro;
+	private TableView<Funcionario> listViewCadastro;
+
+	private TableColumn<Funcionario, String> taCodigo = new TableColumn<Funcionario, String>("Codigo");
+	private TableColumn<Funcionario, String> taCargo = new TableColumn<Funcionario, String>("Cargo");
+	private TableColumn<Funcionario, String> taNome = new TableColumn<Funcionario, String>("Nome");
 
 	ObservableList<String> list = FXCollections.observableArrayList("Gerente: gerente159   |   Senha: 1234");
-
+	ObservableList<Funcionario> lista = FXCollections.observableArrayList();
 	@FXML
 	private Button adicionarBTM;
 	@FXML
 	private TextField cargoTXT;
+	@FXML
+	private Button BTMEstoque;
 
 	@FXML
 	private Button removerBTM;
 
 	@FXML
 	private TextField codFuncionarioTXT;
-	/*private String cod = codFuncionarioTXT.getText();
-	public String getCod() {
-		return cod;
-	}
-
-	public void setCod(String cod) {
-		this.cod = cod;
-	}*/
+	/*
+	 * private String cod = codFuncionarioTXT.getText(); public String getCod() {
+	 * return cod; }
+	 * 
+	 * public void setCod(String cod) { this.cod = cod; }
+	 */
 
 	@FXML
 	private Button interBTM;
 
 	@FXML
 	private Button voltaBTM;
-	FunCAD cad = new FunCAD();
-	
-	
+	@SuppressWarnings("unchecked")
+	ArrayList<String> codFun = new ArrayList<String>();
+
+	@FXML
+	void acaoBTMEstoque(ActionEvent event) {
+		Main.changeScreen("Estoque");
+	}
+
 	@FXML
 	void acaoAdicionarBTM(ActionEvent event) {
-		
+
 		String nomeF = nomeTXT.getText();
 		String cpfF = cpfTXT.getText();
 		String emailF = emailTXT.getText();
@@ -79,54 +94,79 @@ public class ControllerTelaCadastro implements Initializable {
 			alerta.setHeaderText(null);
 			alerta.setContentText("Favor,informar todos os campos!");
 			alerta.show();
-		}else {
-			
-		Funcionario f = new Funcionario(nomeF, cpfF, telefoneF, emailF, codF, cargoF);
-		cad.cadrastarFuncionario(f);
-		cad.cadrastarCodFuncionario(codF);
-		System.out.println("CodFuncionario:" +cad.listarCodFuncionario());
-		if (cad.isJaCadastrado() == false) {
-			listViewCadastro.getItems().addAll(cad.listarFuncionario());
-			nomeTXT.clear();
-			cpfTXT.clear();
-			emailTXT.clear();
-			telefoneTXT.clear();
-			codFuncionarioTXT.clear();
-			cargoTXT.clear();
 		} else {
-			Alert alerta = new Alert(Alert.AlertType.ERROR);
-			alerta.setTitle("Erro");
-			alerta.setHeaderText(null);
-			alerta.setContentText("Funcionário já cadastrado,favor checar os dados");
-			alerta.show();
-			nomeTXT.clear();
-			cpfTXT.clear();
-			emailTXT.clear();
-			telefoneTXT.clear();
-			codFuncionarioTXT.clear();
-			cargoTXT.clear();
-		}
+
+			Funcionario f = new Funcionario(nomeF, cpfF, telefoneF, emailF, codF, cargoF);
+			codFun.add(codF);
+			controllerLogin.cad.cadrastarCodFuncionario(codFun);
+			System.out.println("CodFuncionario:" + controllerLogin.cad.listarCodFuncionario());
+			if (controllerLogin.cad.cadrastarFuncionario(f) == true) {
+				listViewCadastro.getItems().addAll(f);
+				nomeTXT.clear();
+				cpfTXT.clear();
+				emailTXT.clear();
+				telefoneTXT.clear();
+				codFuncionarioTXT.clear();
+				cargoTXT.clear();
+			} else {
+				Alert alerta = new Alert(Alert.AlertType.ERROR);
+				alerta.setTitle("Erro");
+				alerta.setHeaderText(null);
+				alerta.setContentText("Funcionário já cadastrado,favor checar os dados");
+				alerta.show();
+				nomeTXT.clear();
+				cpfTXT.clear();
+				emailTXT.clear();
+				telefoneTXT.clear();
+				codFuncionarioTXT.clear();
+				cargoTXT.clear();
+			}
 		}
 
 	}
 
 	@FXML
 	void listarFuncionarios(ActionEvent event) {
-		listViewCadastro.getItems().removeAll(cad.listarFuncionario());
-		listViewCadastro.getItems().addAll(cad.listarFuncionario());
+
+		listViewCadastro.getItems().addAll(controllerLogin.cad.listarFuncionario());
 		listViewCadastro.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
 
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	@FXML
 	void acaoRemoverBTM(ActionEvent event) {
-		//Sistema não implementado!
-		Alert alerta = new Alert(Alert.AlertType.WARNING);
-		alerta.setTitle("Alerta");
-		alerta.setHeaderText(null);
-		alerta.setContentText("Sistema não implementado!");
-		alerta.show();
+		// Sistema não implementado!
+		if (listViewCadastro.getSelectionModel().getSelectedItem() == null) {
+			Alert alerta = new Alert(Alert.AlertType.WARNING);
+			alerta.setTitle("Alerta");
+			alerta.setHeaderText(null);
+			alerta.setContentText("Sistema não implementado!");
+			alerta.show();
+		} else if (listViewCadastro.getSelectionModel().getSelectedItem().getCodFuncionario() == "gerente159") {
+			Alert alerta = new Alert(Alert.AlertType.WARNING);
+			alerta.setTitle("Alerta");
+			alerta.setHeaderText(null);
+			alerta.setContentText("Não Pode Remover o Gerente");
+			alerta.show();
+		} else {
+			for (int i = 0; i < lista.size(); i++) {
+
+				if (listViewCadastro.getSelectionModel().getSelectedItem() == lista.get(i)) {
+
+					controllerLogin.cad.removerCodFuncionario(lista.get(i).getCodFuncionario());
+					controllerLogin.cad.removerFuncionario(lista.get(i));
+					lista.remove(i);
+
+				}
+				/*
+				 * controllerLogin.cad.removerCodFuncionario(listViewCadastro.getSelectionModel(
+				 * ).getSelectedItem().getCodFuncionario());
+				 * controllerLogin.cad.removerFuncionario(listViewCadastro.getSelectionModel().
+				 * getSelectedItem()); controllerLogin.cad.cadrastarCodFuncionario2(codigo);
+				 */
+			}
+		}
 	}
 
 	@FXML
@@ -146,9 +186,34 @@ public class ControllerTelaCadastro implements Initializable {
 		Main.changeScreen("Login");
 	}
 
+	public FunCAD retornaCad() {
+		return controllerLogin.cad;
+	}
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// listViewCadastro.setItems(list);
+
+		listViewCadastro.setItems(lista);
+		taNome.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nome"));
+		taCodigo.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("codFuncionario"));
+		taCargo.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("cargo"));
+
+		listViewCadastro.getColumns().addAll(taNome, taCargo, taCodigo);
+
+		Funcionario f1 = new Funcionario("João", "845.965.852-65", "(81)98888-5959", "Joaofsm@gmail.com", "123",
+				"Garçom");
+		Funcionario f2 = new Funcionario("Arthur", "585.905.152-05", "(81)97778-5959", "Arthurfsm@gmail.com", "012",
+				"Caixa");
+		Funcionario f3 = new Funcionario("Pedro", "125.102.152-00", "(81)97788-5959", "Pedrofsm@gmail.com", "001",
+				"Cozinha");
+		Funcionario f4 = new Funcionario("Carlos", "159.987.845-15", "(81)97788-0408", "Carlosfsm@gmail.com",
+				"gerente159", "Gerente");
+		controllerLogin.cad.cadrastarFuncionario(f4);
+		controllerLogin.cad.cadrastarFuncionario(f3);
+		controllerLogin.cad.cadrastarFuncionario(f2);
+		controllerLogin.cad.cadrastarFuncionario(f1);
+		controllerLogin.cad.cadrastarCodFuncionario(codFun);
 		listarFuncionarios(null);
 
 	}

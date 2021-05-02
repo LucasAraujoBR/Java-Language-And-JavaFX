@@ -1,9 +1,6 @@
 package parteFuncionario;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
-import Mesas.Mesa;
 
 public class FunCAD {
 	private ArrayList<Funcionario> fun;
@@ -15,39 +12,56 @@ public class FunCAD {
 		this.fun = new ArrayList<>();
 	}
 
-	public void cadrastarFuncionario(Funcionario p) {
+	public boolean cadrastarFuncionario(Funcionario p) {
+
+		boolean FuncionarioExiste = false;
 		if (p != null) {
-			boolean FuncionarioExiste = true;
+			FuncionarioExiste = true;
 
 			for (Funcionario todas : fun) {
-				if (todas.equals(p)) {
+				if (todas.getCodFuncionario().equals(p.getCodFuncionario())) {
+					FuncionarioExiste = false;
+					this.jaCadastrado = true;
+				}
+			}
+
+			if (FuncionarioExiste) {
+				this.fun.add(p);
+			}
+
+		}
+		return FuncionarioExiste;
+
+	}
+
+	public void cadrastarCodFuncionario(ArrayList<String> codFuncionario2) {
+		if (codFuncionario2 != null) {
+			boolean FuncionarioExiste = true;
+
+			for (String todas : codFuncionario) {
+				if (todas.equals(codFuncionario2)) {
 					FuncionarioExiste = false;
 					this.jaCadastrado = true;
 					break;
 				}
 			}
 			if (FuncionarioExiste == true) {
-				this.fun.add(p);
+				this.codFuncionario.addAll(codFuncionario2);
 			}
 		}
 
 	}
-	public void cadrastarCodFuncionario(String p) {
-		if (p != null) {
-			boolean FuncionarioExiste = true;
 
-			for (String todas : codFuncionario) {
-				if (todas.equals(p)) {
-					FuncionarioExiste = false;
-					this.jaCadastrado = true;
-					break;
-				}
-			}
-			if (FuncionarioExiste == true) {
-				this.codFuncionario.add(p);
-			}
-		}
+	public void removerCodFuncionario(String p) {
+		codFuncionario.remove(p);
+	}
 
+	public void cadrastarCodFuncionario2(String p) {
+		codFuncionario.add(p);
+	}
+
+	public void removerFuncionario(Funcionario p) {
+		fun.remove(p);
 	}
 
 	public boolean isJaCadastrado() {
@@ -57,6 +71,7 @@ public class FunCAD {
 	public ArrayList<Funcionario> listarFuncionario() {
 		return fun;
 	}
+
 	public ArrayList<String> listarCodFuncionario() {
 		return codFuncionario;
 	}
