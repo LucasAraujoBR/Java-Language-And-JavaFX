@@ -2,7 +2,6 @@ package Application;
 
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 /*tamanho da lista size()
 inserir elemento na lista: add(obj),add(int,obj)
